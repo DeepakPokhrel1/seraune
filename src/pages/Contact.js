@@ -15,7 +15,7 @@ const Contact = () => {
   // Form submission state
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitSuccess, setSubmitSuccess] = useState(false);
-  const [submitError, ] = useState(false);
+  const [submitError, setSubmitError] = useState(false);
 
   // Handle input changes
   const handleChange = (e) => {
@@ -27,30 +27,49 @@ const Contact = () => {
   };
 
   // Handle form submission
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
+    setSubmitError(false);
     
-    // Simulate form submission with a timeout
-    setTimeout(() => {
-      setIsSubmitting(false);
-      setSubmitSuccess(true);
-      
-      // Reset form after successful submission
-      setFormData({
-        name: '',
-        email: '',
-        phone: '',
-        subject: '',
-        message: '',
-        service: ''
+    try {
+      const response = await fetch('http://localhost:8000/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
       });
       
-      // Hide success message after 5 seconds
-      setTimeout(() => {
-        setSubmitSuccess(false);
-      }, 5000);
-    }, 1500);
+      const data = await response.json();
+      
+      if (response.ok) {
+        setSubmitSuccess(true);
+        
+        // Reset form after successful submission
+        setFormData({
+          name: '',
+          email: '',
+          phone: '',
+          subject: '',
+          message: '',
+          service: ''
+        });
+        
+        // Hide success message after 5 seconds
+        setTimeout(() => {
+          setSubmitSuccess(false);
+        }, 5000);
+      } else {
+        setSubmitError(true);
+        console.error('Form submission error:', data.message);
+      }
+    } catch (error) {
+      setSubmitError(true);
+      console.error('Form submission error:', error);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -214,7 +233,7 @@ const Contact = () => {
                       onChange={handleChange}
                       required
                     >
-                      <option value="" disabled selected>Select a service</option>
+                      <option value="" disabled>Select a service</option>
                       <option value="web-development">Website Development</option>
                       <option value="digital-marketing">Digital Marketing</option>
                       <option value="cloud-solutions">IT & Cloud Solutions</option>

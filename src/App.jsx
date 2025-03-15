@@ -5,6 +5,7 @@ import NavBar from './components/NavBar';
 import Footer from './components/Footer';
 import About from './pages/About';
 import './App.css';
+import Services from './pages/Services';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
             {/* Add more routes as needed */}
             <Route path="/about" element={<About />} />
             {/* <Route path="/services" element={<Services />} /> */}
+            <Route path="/services" element={<Services />} />
           </Routes>
         </main>
         <Footer />
