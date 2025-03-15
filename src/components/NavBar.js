@@ -32,13 +32,15 @@ const Navbar = () => {
   };
 
   return (
-    <header className={`white-header ${scrolled ? 'scrolled' : ''}`}>
+    <header className={`modern-header ${scrolled ? 'scrolled' : ''}`}>
       <div className="container">
-        <nav className="white-navbar">
+        <nav className="modern-navbar">
           {/* Logo */}
           <Link to="/" className="navbar-logo" onClick={() => handleSetActive('home')}>
-            <span className="logo-text">Seraune</span>
-            <span className="logo-accent"></span>
+            <div className="logo-container">
+              <div className="company-logo">S</div>
+            </div>
+            <span className="company-name">Seraune</span>
           </Link>
           
           {/* Main Navigation */}
@@ -74,32 +76,18 @@ const Navbar = () => {
               </li>
               <li className="nav-item">
                 <Link 
-                  to="/portfolio" 
-                  className={`nav-link ${activeLink === 'portfolio' ? 'active' : ''}`}
-                  onClick={() => handleSetActive('portfolio')}
+                  to="/contact" 
+                  className={`nav-link ${activeLink === 'contact' ? 'active' : ''}`}
+                  onClick={() => handleSetActive('contact')}
                 >
-                  Portfolio
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link 
-                  to="/blog" 
-                  className={`nav-link ${activeLink === 'blog' ? 'active' : ''}`}
-                  onClick={() => handleSetActive('blog')}
-                >
-                  Blog
+                  Contact
                 </Link>
               </li>
             </ul>
           </div>
           
-          {/* Action Button */}
+          {/* Mobile Menu Button */}
           <div className="navbar-actions">
-            <Link to="/contact" className="action-button">
-              Contact Us
-            </Link>
-            
-            {/* Mobile Menu Button */}
             <button 
               className={`menu-button ${mobileMenuOpen ? 'is-active' : ''}`} 
               onClick={toggleMobileMenu}
