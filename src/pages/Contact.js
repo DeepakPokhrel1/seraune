@@ -112,7 +112,7 @@ const Contact = () => {
                     </div>
                     <div className="info-content">
                       <h3>Email Us</h3>
-                      <a href="mailto:hello@seraune.com">hello@seraune.com</a>
+                      <a href="mailto:www.seraune.com@gmail.com">hello@seraune.com</a>
                     </div>
                   </div>
                   
@@ -124,7 +124,7 @@ const Contact = () => {
                     </div>
                     <div className="info-content">
                       <h3>Call Us</h3>
-                      <a href="tel:+15555555555">(555) 555-5555</a>
+                      <a href="tel:+44 7503494242">(555) 555-5555</a>
                     </div>
                   </div>
                   
