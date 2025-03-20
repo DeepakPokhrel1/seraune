@@ -176,17 +176,17 @@ const About = () => {
           <div className="team-grid">
             {[
               {
-                name: "Michael Chen",
+                name: "Krishna Prasad Sah",
                 role: "Founder & CEO",
                 bio: "Former tech consultant passionate about helping small businesses leverage technology effectively."
               },
               {
-                name: "Elena Rodriguez",
+                name: "Nirmal",
                 role: "Creative Director",
                 bio: "Award-winning designer with 12+ years of experience creating memorable digital experiences."
               },
               {
-                name: "James Wilson",
+                name: "Deepak Pokhrel",
                 role: "Head of Development",
                 bio: "Full-stack developer specializing in creating robust, scalable solutions."
               },
