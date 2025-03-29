@@ -1,4 +1,4 @@
-name: NodeJS with Gulp
+name: NodeJS with Gulp (Backend + Frontend)
 
 on:
   push:
@@ -15,14 +15,32 @@ jobs:
         node-version: [18.x, 20.x, 22.x]
 
     steps:
-    - uses: actions/checkout@v4
+    - name: Checkout Repository
+      uses: actions/checkout@v4
 
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v4
       with:
         node-version: ${{ matrix.node-version }}
 
-    - name: Build
+    # Install Frontend Dependencies (Frontend is at Root)
+    - name: Install Frontend Dependencies
+      run: npm install
+
+    - name: Build Frontend (Gulp)
+      run: gulp
+
+    # Install Backend Dependencies
+    - name: Install Backend Dependencies
       run: |
+        cd backend
         npm install
-        gulp
+
+    - name: Start Backend Server
+      run: |
+        cd backend
+        npm run start &  # Run backend in the background
+
+    - name: Connect Frontend to Backend
+      run: |
+        echo "REACT_APP_BACKEND_URL=http://localhost:5000" > .env  # Set backend URL for frontend
